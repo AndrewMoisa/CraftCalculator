@@ -2,7 +2,9 @@ import React from 'react';
 import { getAllWeapons } from '../data/Weapons';
 
 function WeaponSelector({ selectedWeapon, onWeaponChange }) {
-  const weapons = getAllWeapons();
+  const allItems = getAllWeapons();
+  // Filter only weapons (items with crafting property)
+  const weapons = allItems.filter(item => item.crafting);
 
   return (
     <div className="bg-slate-800 border border-slate-700 p-6 rounded-2xl shadow-2xl mb-8">

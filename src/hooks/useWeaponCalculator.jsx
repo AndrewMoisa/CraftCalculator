@@ -6,7 +6,39 @@ export function useWeaponCalculator(weaponId, quantity) {
     const weapon = getWeaponById(weaponId);
     if (!weapon) return null;
 
-    const { crafting, smelting, recipe, additionalParts } = weapon;
+    const { crafting, smelting, recipe, additionalParts, ammunition } = weapon;
+
+    // Check if this is ammunition (no crafting property)
+    if (!crafting && ammunition) {
+      // Handle ammunition calculation
+      const batchesNeeded = Math.ceil(quantity / ammunition.batchSize);
+      const totalBullets = batchesNeeded * ammunition.bullets.quantity;
+      
+      // Calculate casing requirements
+      const totalCasings = batchesNeeded * ammunition.casing.quantity;
+      const casingBatches = Math.ceil(totalCasings / ammunition.casing.quantity);
+      
+      const rawMaterials = {
+        copperOre: casingBatches * ammunition.casing.smelting.copperOre,
+        casing: totalCasings,
+        lead: batchesNeeded * ammunition.bullets.materials.lead,
+        gunpowder: batchesNeeded * ammunition.bullets.materials.gunpowder,
+      };
+
+      return {
+        weapon,
+        rawMaterials,
+        intermediates: {
+          casing: totalCasings
+        },
+        totalWeaponParts: 0,
+        usedWeaponParts: 0,
+        surplusWeaponParts: 0,
+        totalCrafts: batchesNeeded,
+        isAmmunition: true,
+        totalBullets,
+      };
+    }
 
     // Calculate weapon parts needed
     const totalCrafts = crafting.craftsNeeded * quantity;

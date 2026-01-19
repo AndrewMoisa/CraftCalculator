@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ResourceRow from '../components/ResourceRow';
+import dbIcon from '../assets/db_icon.png';
 
 function Calculator() {
   const [quantity, setQuantity] = useState(10);
@@ -46,7 +47,7 @@ function Calculator() {
         </header>
 
         <div className='flex items-center justify-center m-4 gap-4'>
-          <img className="w-xs" src="/src/assets/db.png" alt="db icon" />
+          <img className="w-xs" src={dbIcon} alt="db icon" />
           <div className='flex flex-col'>
             <span className='text-white text-1xl uppercase'>5x - piesă armă</span>
             <span className='text-white text-1xl uppercase'>1x - lingou aur</span>

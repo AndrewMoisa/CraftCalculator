@@ -26,7 +26,7 @@ function Calculator() {
       <div className="max-w-4xl mx-auto">
         <header className="text-center mb-10">
           <h1 className="text-4xl font-black text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-200 uppercase tracking-tighter">
-            Calculator Crafting
+            Gun Calculator Crafting
           </h1>
           <p className="text-slate-400 mt-2 text-sm uppercase tracking-widest">
             Sistem Management Resurse v1.0
@@ -45,11 +45,14 @@ function Calculator() {
             <div className='text-slate-500 text-xs mt-2 space-y-1'>
               {Object.entries(weapon.recipe).map(([key, value]) => (
                 <div key={key}>
-                  {value}x {key.replace(/([A-Z])/g, ' $1').trim()}
+                  {value}x {key.replace(/([A-Z])/g, ' $1').trim()} -TOTAL NECESARE
                 </div>
               ))}
             </div>
           </div>
+        </div>
+        <div className='flex items-center justify-center m-4 gap-4'>
+          <span className='text-slate-400 text-sm italic'> {weapon.craftDescription.description}</span>
         </div>
 
         <div className="bg-slate-800 border border-slate-700 p-6 rounded-2xl shadow-2xl mb-8">
@@ -80,15 +83,6 @@ function Calculator() {
               )}
               {rawMaterials.aluOre && (
                 <ResourceRow label="Minereu Aluminiu" value={rawMaterials.aluOre} color="bg-blue-300" />
-              )}
-              {rawMaterials.plastic && (
-                <ResourceRow label="Plastic" value={rawMaterials.plastic} color="bg-green-500" />
-              )}
-              {rawMaterials.metalParts && (
-                <ResourceRow label="Piese Metal" value={rawMaterials.metalParts} color="bg-slate-400" />
-              )}
-              {rawMaterials.goldIngot && (
-                <ResourceRow label="Lingou Aur" value={rawMaterials.goldIngot} color="bg-yellow-400" />
               )}
             </div>
           </div>
@@ -124,6 +118,24 @@ function Calculator() {
                   (4 Minereuri = 1 Arc)
                 </div>
               </div>
+              <div className="bg-slate-900 p-3 rounded-lg">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-slate-400">Plastic</span>
+                  <span className="text-xl font-bold text-blue-300">{rawMaterials.plastic}</span>
+                </div>
+              </div>
+              <div className="bg-slate-900 p-3 rounded-lg">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-slate-400">Piese Metal</span>
+                  <span className="text-xl font-bold text-blue-300">{rawMaterials.metalParts}</span>
+                </div>
+              </div>
+              <div className="bg-slate-900 p-3 rounded-lg">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-slate-400">Lingou Aur</span>
+                  <span className="text-xl font-bold text-blue-300">{rawMaterials.goldIngot}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -137,7 +149,7 @@ function Calculator() {
           <div className="p-6">
             <div className="text-center space-y-4">
               <div>
-                <div className="text-5xl font-mono font-bold text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-300">
+                <div className="text-3xl font-mono font-bold text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-300">
                   {totalWeaponParts}
                 </div>
                 <div className="text-xs text-slate-400 uppercase mt-2">Piese Armă Obținute</div>
@@ -152,8 +164,8 @@ function Calculator() {
                 </div>
               )}
               <div className="mt-4 pt-4 border-t border-slate-700">
-                <div className="text-3xl font-bold text-green-400">{quantity}</div>
-                <div className="text-xs text-slate-400 uppercase">Arme {weapon.id} Finale</div>
+                <div className="text-6xl font-bold text-green-400">{quantity}</div>
+                <div className="text-xs text-slate-400 uppercase">Arma {weapon.id} Creata</div>
               </div>
             </div>
           </div>

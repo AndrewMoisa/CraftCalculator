@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAllWeapons } from '../data/weapons';
+import { getAllWeapons } from '../data/Weapons';
 
 function WeaponSelector({ selectedWeapon, onWeaponChange }) {
   const weapons = getAllWeapons();

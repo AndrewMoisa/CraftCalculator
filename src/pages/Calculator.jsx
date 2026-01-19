@@ -39,7 +39,7 @@ function Calculator() {
     <div className="min-h-screen p-4 md:p-10">
       <div className="max-w-4xl mx-auto">
         <header className="text-center mb-10">
-          <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-200 uppercase tracking-tighter">
+          <h1 className="text-4xl font-black text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-200 uppercase tracking-tighter">
             Calculator Crafting
           </h1>
           <p className="text-slate-400 mt-2 text-sm uppercase tracking-widest">Sistem Management Resurse v1.0</p>
@@ -119,7 +119,7 @@ function Calculator() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl overflow-hidden">
+        <div className="bg-linear-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl overflow-hidden">
           <div className="bg-slate-700/50 p-4 border-b border-slate-600">
             <h2 className="font-bold flex items-center gap-2">
               <span className="text-yellow-400 text-xl font-black">⚙️</span> PROCESARE FINALĂ
@@ -128,7 +128,7 @@ function Calculator() {
           <div className="p-6">
             <div className="text-center space-y-4">
               <div>
-                <div className="text-5xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-300">
+                <div className="text-5xl font-mono font-bold text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-300">
                   {totalWeaponParts}
                 </div>
                 <div className="text-xs text-slate-400 uppercase mt-2">Piese Armă Obținute</div>

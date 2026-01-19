@@ -5,7 +5,7 @@ import { useWeaponCalculator } from '../hooks/useWeaponCalculator';
 
 function Calculator() {
   const [quantity, setQuantity] = useState(1);
-  const [selectedWeapon, setSelectedWeapon] = useState('DB');
+  const [selectedWeapon, setSelectedWeapon] = useState('TEC');
 
   const calculation = useWeaponCalculator(selectedWeapon, quantity);
 

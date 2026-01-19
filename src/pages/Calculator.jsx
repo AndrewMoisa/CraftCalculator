@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ResourceRow from '../components/ResourceRow';
-import dbIcon from '../assets/db_icon.png';
+import dbIcon from '../assets/db.png';
 
 function Calculator() {
   const [quantity, setQuantity] = useState(10);

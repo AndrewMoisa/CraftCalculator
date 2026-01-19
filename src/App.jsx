@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Navbar from './components/Navbar.jsx';
 import Calculator from './pages/Calculator.jsx';
+import BulletsCalculator from './pages/BulletsCalculator.jsx';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/calculator" element={<Calculator />} />
+          <Route path="/bullets" element={<BulletsCalculator />} />
         </Routes> 
       </div>
     </BrowserRouter>

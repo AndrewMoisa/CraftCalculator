@@ -16,7 +16,13 @@ function Navbar() {
               to="/calculator" 
               className="text-slate-300 hover:text-white transition-colors"
             >
-              Calculator
+              Guns
+            </Link>
+            <Link 
+              to="/bullets" 
+              className="text-slate-300 hover:text-white transition-colors"
+            >
+              Bullets
             </Link>
           </div>
         </div>

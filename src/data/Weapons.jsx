@@ -44,6 +44,28 @@ export const WEAPONS = {
       spring: { aluOre: 4 }                // 4 alu ore = 1 spring
     }
   },
+  MAK: {
+    id: 'MAK',
+    name: 'Mini AK',
+    icon: '/assets/mak.png',
+    recipe: {
+      weaponParts: 3,
+    },
+    crafting: {
+      partsPerCraft: 2,
+      craftsNeeded: 2, // 2 crafts × 2 = 4 parts (1 surplus)
+      materials: {
+        steel: 1,      // per craft
+        spring: 1,     // per craft
+        plastic: 1,    // per craft
+        metalParts: 2  // per craft
+      }
+    },
+    smelting: {
+      steel: { ironOre: 4, coalOre: 4 },  // 4 iron + 4 coal = 1 steel
+      spring: { aluOre: 4 }                // 4 alu ore = 1 spring
+    }
+  },
 };
 
 export const getWeaponById = (id) => WEAPONS[id];

@@ -4,46 +4,56 @@ import ResourceRow from '../components/ResourceRow';
 function Calculator() {
   const [quantity, setQuantity] = useState(10);
 
-  // Pentru 1 DB trebuie: 5 piese armă + 1 lingou aur
-  // Pentru 5 piese armă trebuie: 2.5 craft-uri (fiecare craft = 2 piese)
-  // Deci pentru 1 craft (2 piese armă): 1 Plastic + 1 Oțel + 1 Arc + 2 Piese Metal
+  // Pentru 1 DB ai nevoie de: 5 piese armă + 1 lingou aur
+  // Pentru 5 piese armă ai nevoie de: 3 craft-uri (fiecare craft = 2 piese, deci 3×2=6 piese, 1 surplus)
+  // Pentru 1 craft (2 piese armă): 1 Plastic + 1 Oțel + 1 Arc + 2 Piese Metal
+  
+  const craftsNeeded = 3; // 3 craft-uri pentru 5 piese armă (per DB)
+  const partsNeeded = 5;  // 5 piese armă per DB
   
   // Resurse necesare pentru 1 DB, pornind de la materii prime
+  // 4 minereuri = 1 lingou
+  // Pentru 1 oțel: 4 fier + 4 cărbune (nu 4 total, ci 4 din fiecare!)
   const rawMaterials = {
-    ironOre: 10,      // 2.5 oțel × 4 minereu
-    coalOre: 10,      // 2.5 oțel × 4 minereu  
-    aluOre: 10,       // 2.5 arc (alu) × 4 minereu
-    plastic: 2.5,     // 2.5 craft-uri × 1 plastic
-    metalParts: 5,    // 2.5 craft-uri × 2 piese
+    ironOre: 12,      // 3 oțel × 4 fier per oțel
+    coalOre: 12,      // 3 oțel × 4 cărbune per oțel
+    aluOre: 12,       // 3 arcuri × 4 aluminiu per arc
+    plastic: 3,       // 3 craft-uri × 1 plastic
+    metalParts: 6,    // 3 craft-uri × 2 piese
     goldIngot: 1      // rămâne la fel
   };
 
-  // Produse intermediate
+  // Produse intermediare
   const intermediates = {
-    steel: 2.5,       // din 10 fier + 10 cărbune
-    arc: 2.5,         // (aluminiu) din 10 alu ore
-    weaponParts: 5    // 2.5 craft-uri × 2 piese = 5 piese armă
+    steel: 3,         // din 12 fier + 12 cărbune = 3 oțel
+    spring: 3,        // din 12 minereu aluminiu = 3 arcuri
+    weaponParts: 6    // 3 craft-uri × 2 piese = 6 piese armă (5 folosite, 1 surplus per DB)
   };
 
-  const total = (val) => Math.ceil(val * quantity);
+  const total = (val) => val * quantity;
+  const totalWeaponParts = intermediates.weaponParts * quantity;
+  const usedWeaponParts = partsNeeded * quantity;
+  const surplusWeaponParts = totalWeaponParts - usedWeaponParts;
 
   return (
     <div className="min-h-screen p-4 md:p-10">
       <div className="max-w-4xl mx-auto">
         <header className="text-center mb-10">
           <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-200 uppercase tracking-tighter">
-            Crafting Calculator
+            Calculator Crafting
           </h1>
-          <p className="text-slate-400 mt-2 text-sm uppercase tracking-widest">Resource Management System v1.0</p>
+          <p className="text-slate-400 mt-2 text-sm uppercase tracking-widest">Sistem Management Resurse v1.0</p>
         </header>
 
         <div className='flex items-center justify-center m-4 gap-4'>
           <img className="w-xs" src="/src/assets/db.png" alt="db icon" />
           <div className='flex flex-col'>
-            <span className='text-white text-1xl uppercase'>5x - piesa arma</span>
+            <span className='text-white text-1xl uppercase'>5x - piesă armă</span>
             <span className='text-white text-1xl uppercase'>1x - lingou aur</span>
             <span className='text-slate-500 text-xs mt-2'>┗━ 1 Craft = 2 Piese Armă</span>
             <span className='text-slate-500 text-xs'>┗━ 1 Oțel + 1 Arc + 1 Plastic + 2 Piese Metal</span>
+            <span className='text-amber-500 text-xs mt-1'>⚠ 3 craft-uri = 6 piese (1 surplus per DB)</span>
+            <span className='text-blue-400 text-xs mt-1'>ℹ️ 4 minereuri = 1 lingou</span>
           </div>
         </div>
 
@@ -89,14 +99,20 @@ function Calculator() {
                 <div className="text-xs text-slate-500 mt-1">
                   {total(rawMaterials.ironOre)} Fier + {total(rawMaterials.coalOre)} Cărbune
                 </div>
+                <div className="text-xs text-slate-600">
+                  (4 Fier + 4 Cărbune = 1 Oțel)
+                </div>
               </div>
               <div className="bg-slate-900 p-3 rounded-lg">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-slate-400">Arc (Aluminiu)</span>
-                  <span className="text-xl font-bold text-blue-300">{total(intermediates.arc)}</span>
+                  <span className="text-xl font-bold text-blue-300">{total(intermediates.spring)}</span>
                 </div>
                 <div className="text-xs text-slate-500 mt-1">
-                  {total(rawMaterials.aluOre)} Minereu Alu
+                  {total(rawMaterials.aluOre)} Minereu Aluminiu
+                </div>
+                <div className="text-xs text-slate-600">
+                  (4 Minereuri = 1 Arc)
                 </div>
               </div>
             </div>
@@ -113,18 +129,33 @@ function Calculator() {
             <div className="text-center space-y-4">
               <div>
                 <div className="text-5xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-300">
-                  {total(intermediates.weaponParts)}
+                  {totalWeaponParts}
                 </div>
                 <div className="text-xs text-slate-400 uppercase mt-2">Piese Armă Obținute</div>
               </div>
               <div className="h-px bg-slate-700 w-1/2 mx-auto"></div>
               <div className="text-sm text-slate-500">
-                Din {total(intermediates.steel)} Oțel + {total(intermediates.arc)} Arc + {total(rawMaterials.plastic)} Plastic + {total(rawMaterials.metalParts)} Piese Metal
+                Din {total(intermediates.steel)} Oțel + {total(intermediates.spring)} Arcuri + {total(rawMaterials.plastic)} Plastic + {total(rawMaterials.metalParts)} Piese Metal
               </div>
               <div className="text-xs text-slate-600 mt-2">
-                ({Math.ceil(quantity * 2.5)} craft-uri × 2 piese = {total(intermediates.weaponParts)} piese)
+                ({total(craftsNeeded)} craft-uri × 2 piese = {totalWeaponParts} piese)
+              </div>
+              <div className="text-xs text-amber-600">
+                (Folosite: {usedWeaponParts} piese | Surplus: {surplusWeaponParts} piese)
               </div>
               <div className="mt-4 pt-4 border-t border-slate-700">
+                <div className="flex items-center justify-center gap-4 mb-2">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-yellow-400">{total(rawMaterials.goldIngot)}</div>
+                    <div className="text-xs text-slate-400 uppercase">Lingouri Aur</div>
+                  </div>
+                  <div className="text-slate-600 text-2xl">+</div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-orange-400">{usedWeaponParts}</div>
+                    <div className="text-xs text-slate-400 uppercase">Piese Armă</div>
+                  </div>
+                  <div className="text-slate-600 text-2xl">=</div>
+                </div>
                 <div className="text-3xl font-bold text-green-400">{quantity}</div>
                 <div className="text-xs text-slate-400 uppercase">Arme DB Finale</div>
               </div>

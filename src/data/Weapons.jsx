@@ -80,11 +80,11 @@ export const WEAPONS = {
     name: 'Mini Gun',
     icon: '/assets/mg.png',
     recipe: {
-      weaponParts: 8,
+      weaponParts: 11,
     },
     crafting: {
       partsPerCraft: 2,
-      craftsNeeded: 4, // 4 crafts × 2 = 8 parts (0 surplus)
+      craftsNeeded: 6, // 6 crafts × 2 = 12 parts (1 surplus)
       materials: {
         steel: 1,      // per craft
         spring: 1,     // per craft
@@ -97,7 +97,7 @@ export const WEAPONS = {
       spring: { aluOre: 4 }                // 4 alu ore = 1 spring
     },
     craftDescription: {
-       description: '1x Butstock, 1x Țeavă Rifle, 1x Corp Rifle', 
+       description: '3x Piesa arma, 1x Butstock, 1x Țeavă Rifle, 1x Corp Rifle', 
     }
   },
   ARMK2: {
@@ -105,11 +105,11 @@ export const WEAPONS = {
     name: 'ARMK2',
     icon: '/assets/armk2.png',
     recipe: {
-      weaponParts: 8,
+      weaponParts: 11,
     },
     crafting: {
       partsPerCraft: 2,
-      craftsNeeded: 4, // 4 crafts × 2 = 8 parts (0 surplus)
+      craftsNeeded: 6, // 6 crafts × 2 = 12 parts (1 surplus)
       materials: {
         steel: 1,      // per craft
         spring: 1,     // per craft

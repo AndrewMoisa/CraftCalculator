@@ -130,12 +130,14 @@ function Calculator() {
                   <span className="text-xl font-bold text-blue-300">{rawMaterials.metalParts}</span>
                 </div>
               </div>
-              <div className="bg-slate-900 p-3 rounded-lg">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-400">Lingou Aur</span>
-                  <span className="text-xl font-bold text-blue-300">{rawMaterials.goldIngot}</span>
+              {rawMaterials.goldIngot > 0 && (
+                <div className="bg-slate-900 p-3 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-slate-400">Lingou Aur</span>
+                    <span className="text-xl font-bold text-yellow-400">{rawMaterials.goldIngot}</span>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

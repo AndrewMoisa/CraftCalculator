@@ -59,7 +59,7 @@ export const WEAPONS = {
     },
     crafting: {
       partsPerCraft: 2,
-      craftsNeeded: 2, // 2 crafts × 2 = 4 parts (1 surplus)
+      craftsNeeded: 3, // 3 crafts × 2 = 6 parts (no surplus)
       materials: {
         steel: 1,      // per craft
         spring: 1,     // per craft

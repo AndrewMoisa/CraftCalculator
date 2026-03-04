@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Navbar from './components/Navbar.jsx';
 import Calculator from './pages/Calculator.jsx';
+import PasswordGate from './components/PasswordGate.jsx';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/calculator" element={<Calculator />} />
+          <Route path="/calculator" element={<PasswordGate><Calculator /></PasswordGate>} />
         </Routes> 
       </div>
     </BrowserRouter>

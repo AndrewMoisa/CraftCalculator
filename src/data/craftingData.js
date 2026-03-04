@@ -40,7 +40,7 @@ export const WEAPONS = [
   },
   {
     id: 'DB',
-    name: 'Desert Eagle',
+    name: 'DB',
     icon: '/assets/db.png',
     assemblyParts: [
       { name: 'Piese Armă', qty: 3, partsCost: 1 },

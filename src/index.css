@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+
+html {
+  scrollbar-color: #22c55e33 transparent;
+}
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background: #0a0a0a;
+  color: #d1d5db;
+}
+
+::selection {
+  background: #22c55e40;
+  color: #4ade80;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 1;
+}

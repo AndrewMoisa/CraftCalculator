@@ -2,17 +2,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Navbar from './components/Navbar.jsx';
 import Calculator from './pages/Calculator.jsx';
-import BulletsCalculator from './pages/BulletsCalculator.jsx';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div className="min-h-screen bg-[#0a0a0a]">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/calculator" element={<Calculator />} />
-          <Route path="/bullets" element={<BulletsCalculator />} />
         </Routes> 
       </div>
     </BrowserRouter>

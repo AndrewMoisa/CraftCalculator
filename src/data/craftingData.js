@@ -125,8 +125,8 @@ export const AMMUNITION = [
     icon: '/assets/762.png',
     batchSize: 20,
     casing: { name: 'Casing 7.65mm', copperOre: 2, location: 'Topitorie (sus pe scări)' },
-    materials: { lead: 1, gunpowder: 1 },  // 1 gunpowder = 1 cărbune + 1 sulf
-    assembly: '20x Casing + 1x Plumb + 1x Praf de Pușcă = 20 Gloanțe',
+    materials: { lead: 2, gunpowder: 2 },  // 2 gunpowder = 2 cărbune + 2 sulf
+    assembly: '20x Casing + 2x Plumb + 2x Praf de Pușcă = 20 Gloanțe',
     location: 'Cayo - Fabricat Arme (jos)',
   },
 ];

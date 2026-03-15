@@ -87,7 +87,7 @@ export const WEAPONS = [
     icon: '/assets/heavy.png',
     assemblyParts: [
       { name: 'Piese Armă', qty: 4, partsCost: 1 },
-      { name: 'Țeavă Rifle', qty: 1, partsCost: 1 },
+      { name: 'Țeavă Rifle', qty: 1, partsCost: 3 },
       { name: 'Corp Pistol', qty: 1, partsCost: 1 },
     ],
     extras: { 'Blueprint': 1 },

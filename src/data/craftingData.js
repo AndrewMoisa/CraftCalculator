@@ -45,7 +45,7 @@ export const WEAPONS = [
     assemblyParts: [
       { name: 'Piese Armă', qty: 3, partsCost: 1 },
       { name: 'Corp Pistol', qty: 1, partsCost: 1 },
-      { name: 'Țeavă Pistol', qty: 1, partsCost: 3 },
+      { name: 'Țeavă Pistol', qty: 1, partsCost: 1 },
     ],
     extras: { 'Lingou Aur': 1 },
   },

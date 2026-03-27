@@ -26,6 +26,11 @@ export function useWeaponCalculator(weaponId, quantity) {
     const coal = steel * smelting.steel.coal;
     const aluOre = spring * smelting.spring.aluOre;
 
+    // Intermediate smelting outputs used in crafting recipes
+    const ironIngots = steel;
+    const coalUnits = steel;
+    const aluIngots = spring;
+
     // Gold ingot (from extras if present)
     const goldIngots = weapon.extras?.['Lingou Aur']
       ? weapon.extras['Lingou Aur'] * quantity
@@ -45,7 +50,14 @@ export function useWeaponCalculator(weaponId, quantity) {
     return {
       weapon,
       mining: { ironOre, coal, aluOre, goldOre },
-      smelting: { steel, spring, goldIngots },
+      smelting: {
+        ironIngots,
+        coalUnits,
+        aluIngots,
+        steel,
+        spring,
+        goldIngots,
+      },
       jobs: { plastic, metalParts },
       weaponParts: { crafts, produced: partsProduced, needed: partsNeeded, surplus },
       extras,

@@ -3,13 +3,14 @@ import StepCard, { MaterialLine } from './StepCard';
 function CraftingPipeline({ calc }) {
   const { weapon, mining, smelting, jobs, weaponParts, extras, totalWeapons } =
     calc;
+  const partsShortfall = Math.max(0, weaponParts.needed - weaponParts.produced);
 
   return (
     <div>
       {/* Step 1: Mining */}
       <StepCard step={1} title="Mină" icon="⛏️">
         <MaterialLine label="Minereu Fier" value={mining.ironOre} />
-        <MaterialLine label="Cărbune" value={mining.coal} />
+        <MaterialLine label="Minereu Cărbune" value={mining.coal} />
         <MaterialLine label="Minereu Aluminiu" value={mining.aluOre} />
         {mining.goldOre > 0 && (
           <MaterialLine label="Minereu Aur" value={mining.goldOre} />
@@ -18,16 +19,38 @@ function CraftingPipeline({ calc }) {
 
       {/* Step 2: Topitorie + Joburi */}
       <StepCard step={2} title="Topitorie & Joburi" icon="🔥">
+        <div className="text-xs text-green-500/30 px-3 mb-1 font-mono">
+          // Etapa A: Minereu → Intermediar
+        </div>
+        <MaterialLine
+          label="Lingou Fier (intermediar)"
+          value={smelting.ironIngots}
+          sub={`${mining.ironOre} minereu fier → ${smelting.ironIngots} lingou (4:1)`}
+        />
+        <MaterialLine
+          label="Cărbune (intermediar)"
+          value={smelting.coalUnits}
+          sub={`${mining.coal} minereu cărbune → ${smelting.coalUnits} cărbune (4:1)`}
+        />
+        <MaterialLine
+          label="Lingou Aluminiu (intermediar)"
+          value={smelting.aluIngots}
+          sub={`${mining.aluOre} minereu aluminiu → ${smelting.aluIngots} lingou (4:1)`}
+        />
+        <div className="h-px bg-green-500/10 my-1"></div>
+        <div className="text-xs text-green-500/30 px-3 mb-1 font-mono">
+          // Etapa B: Intermediar → Materiale de craft
+        </div>
         <MaterialLine
           label="Oțel"
           value={smelting.steel}
-          sub={`${mining.ironOre} fier + ${mining.coal} cărbune → ${smelting.steel} oțel  (4 fier + 4 cărbune = 1 oțel)`}
+          sub={`${smelting.ironIngots} lingou fier + ${smelting.coalUnits} cărbune -> ${smelting.steel} oțel (1+1:1)`}
           highlight
         />
         <MaterialLine
           label="Arc"
           value={smelting.spring}
-          sub={`${mining.aluOre} aluminiu → ${smelting.spring} arc  (4 aluminiu = 1 arc)`}
+          sub={`${smelting.aluIngots} lingou aluminiu -> ${smelting.spring} arc (1:1)`}
           highlight
         />
         {smelting.goldIngots > 0 && (
@@ -61,12 +84,21 @@ function CraftingPipeline({ calc }) {
           </div>
         </div>
         <MaterialLine
-          label="Craft-uri necesare"
-          value={weaponParts.crafts}
+          label="Piese obținute"
+          value={weaponParts.produced}
+          sub="Total rezultat după toate craft-urile"
+        />
+        <MaterialLine
+          label="Piese necesare total"
+          value={weaponParts.needed}
+          sub={`Necesar pentru ${totalWeapons}× ${weapon.name}`}
+        />
+        <MaterialLine
+          label="Status"
+          value={partsShortfall > 0 ? `Lipsă ${partsShortfall}` : 'Acoperit'}
+          sub={partsShortfall > 0 ? 'Mai trebuie craft-uri suplimentare' : 'Poți trece la asamblare'}
           highlight
         />
-        <MaterialLine label="Piese produse" value={weaponParts.produced} />
-        <MaterialLine label="Piese necesare" value={weaponParts.needed} />
         {weaponParts.surplus > 0 && (
           <MaterialLine
             label="Surplus"

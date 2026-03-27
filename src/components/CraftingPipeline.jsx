@@ -44,13 +44,13 @@ function CraftingPipeline({ calc }) {
         <MaterialLine
           label="Oțel"
           value={smelting.steel}
-          sub={`${smelting.ironIngots} lingou fier + ${smelting.coalUnits} cărbune -> ${smelting.steel} oțel (1+1:1)`}
+          sub={`${smelting.ironIngots} lingou fier + ${smelting.coalUnits} cărbune → ${smelting.steel} oțel (1+1:1)`}
           highlight
         />
         <MaterialLine
           label="Arc"
           value={smelting.spring}
-          sub={`${smelting.aluIngots} lingou aluminiu -> ${smelting.spring} arc (1:1)`}
+          sub={`${smelting.aluIngots} lingou aluminiu → ${smelting.spring} arc (1:1)`}
           highlight
         />
         {smelting.goldIngots > 0 && (
